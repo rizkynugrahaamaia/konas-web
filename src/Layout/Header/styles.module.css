@@ -1,0 +1,6 @@
+.header_root {
+  background: var(--gradient-blue);
+  color: #ffffff;
+  padding: 16px;
+  margin-bottom: 16px;
+}
