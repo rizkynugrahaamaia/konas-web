@@ -1,0 +1,12 @@
+.footer{
+  @apply p-4;
+  z-index: -1;
+}
+
+.tableRow:nth-child(odd) {
+  @apply bg-[#FEF2FF];
+}
+
+.tableRow:nth-child(even) {
+  @apply bg-white;
+}

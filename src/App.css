@@ -12,16 +12,17 @@
   src: url(assets/font/Gilroy-Bold-2.ttf) format('truetype');
 }
 
+/* preflight, akan mereset semua css atau style yang dikasih oleh browser */
+@tailwind base;
+
 body {
   background-color: #F4F4F7;
   font-family: 'Gilroy';
   font-size: 100%;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
-/* preflight, akan mereset semua css atau style yang dikasih oleh browser */
-@tailwind base;
 
 /* meminta component dr tailwind, examlple: container, grid layout, etc. */
 @tailwind components;

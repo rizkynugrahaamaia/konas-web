@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import LazyFallback from '../components/LazyFallback';
+import LazyFallback from '../components/lazy-fallback';
 
 const Suspensed = (Element) => function suspense(props) {
     return (
@@ -9,6 +9,10 @@ const Suspensed = (Element) => function suspense(props) {
     );
   };
 
-export const MainPage = Suspensed(lazy(() => import('./MainPage' /* webpackChunkName: "Main Page"*/)));
-export const ParticipantDetails =  Suspensed(lazy(() => import('./ParticipantDetails')));
-export const AccessDetails =  Suspensed(lazy(() => import('./AccessDetails')));
+export const Login = Suspensed(lazy(() => import('./login' /* webpackChunkName: "LoginPage"*/)));
+export const Participant = Suspensed(lazy(() => import('./participant' /* webpackChunkName: "Main Page"*/)));
+export const ParticipantAdd =  Suspensed(lazy(() => import('./participant/add')));
+export const ParticipantEdit =  Suspensed(lazy(() => import('./participant/edit')));
+export const ParticipantDetails =  Suspensed(lazy(() => import('./participant/detail')));
+export const Vote = Suspensed(lazy(() => import('./vote' /* webpackChunkName: "Vote"*/)));
+export const AccessDetails =  Suspensed(lazy(() => import('./access-details')));

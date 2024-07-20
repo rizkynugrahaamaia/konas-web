@@ -54,7 +54,7 @@ export default function LazyFallback() {
     <div className={styles.root}>
       <div>
         <div className={styles.spinner} />
-        <img src={src} />
+        <img alt="" src={src} />
       </div>
     </div>
   );

@@ -1,0 +1,63 @@
+.root {
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: all 450ms cubic-bezier(0.32, 1, 0.23, 1) 0ms;
+}
+
+.root.visible {
+  display: block;
+  opacity: 1;
+  overflow: auto;
+  position: fixed;
+  top: 0px;
+  z-index: 999 !important;
+}
+
+.root.visible > .content {
+  transform: translate(0, 0);
+}
+
+.root > .content {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  background-color: #fff;
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  bottom: 0;
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-sizing: border-box;
+  position: fixed;
+  transform: translate(0, 100%);
+  transition: all 450ms cubic-bezier(0.32, 1, 0.23, 1) 100ms;
+  max-height: 70%;
+  overflow: auto;
+  width: 100%;
+  z-index: 40;
+  padding: 1rem;
+}
+
+.root > .content.full_height {
+  max-height: 100%;
+} 
+
+.root > .content.bordered {
+  background-color: #F4F4F7;
+} 
+
+  
+.root.visible > .overlay {
+  @apply z-30 w-full h-full absolute top-0 bottom-0 left-0 right-0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.swipe_btn {
+  background-color: #CACACA;
+  border-radius: 100px;
+  cursor: pointer;
+  height: 5px;
+  margin: 0 auto 20px auto;
+  width:  56px;
+}

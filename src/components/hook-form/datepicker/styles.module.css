@@ -1,0 +1,27 @@
+
+  .label {
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+  }
+
+  .input {
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    height: 2.75rem;
+    line-height: 1.5rem;
+  }
+
+  .input:focus {
+    outline: none;
+  }
+
+  .input::placeholder {
+    font-style: inherit;
+  }
+  
+  /* .input:disabled, .input:read-only {
+    @apply bg-dark-ps8;
+  } */
+  

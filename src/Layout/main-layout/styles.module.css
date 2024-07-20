@@ -1,0 +1,19 @@
+.main {
+  @apply w-full mt-2 flex flex-col pb-4;
+  padding-top: 4.5rem;
+}
+
+.main > div {
+  @apply w-full mt-6;
+}
+
+@screen md {
+  .main {
+    @apply flex-row;
+  }
+
+  .main > div {
+    @apply flex-1 ml-52;
+    width: calc(100% - 13rem);
+  }
+}

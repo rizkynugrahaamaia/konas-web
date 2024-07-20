@@ -1,0 +1,11 @@
+.confirmButton {
+  @apply w-40 text-center mr-2;
+  background-color: #ECB602 !important;
+}
+
+.cancelButton {
+  @apply w-40 text-center;
+  background-color: #ffffff !important;
+  color: #ECB602 !important;
+  border: 1px solid #ECB602 !important;
+}

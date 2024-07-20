@@ -1,6 +1,23 @@
-.header_root {
-  background: var(--gradient-blue);
-  color: #ffffff;
-  padding: 16px;
-  margin-bottom: 16px;
+.root {
+  @apply w-full fixed z-20 top-0 flex justify-center;
+  background: #fff;
+  height: 4.5rem;
+}
+
+.root > div:last-child {
+  @apply h-[150vh] bg-[#290849] absolute text-white z-20 top-0 bottom-0 right-0 w-2/3 shadow-2xl pt-10 overflow-auto;
+  box-shadow: 0 0 10px #85888c;
+  transform-origin: 0% 0%;
+  transform: translate(200%, 0);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+.root > div.mobileMenuVisible:last-child {
+  transform: none;
+}
+
+@screen md {
+   .root > div:last-child {
+    @apply hidden;
+  }
 }

@@ -1,0 +1,47 @@
+.root {
+  width: 13rem;
+  @apply -mt-2 px-2 pt-8 hidden bg-[#290849] min-h-screen fixed;
+}
+
+.root > * + * {
+  @apply mt-3;
+}
+
+.root > li {
+  @apply py-1 no-underline;
+}
+
+.root > li a {
+  text-decoration: none;
+}
+
+.root > li:hover,
+.root > li.active {
+  background: var(--primary-color-gradient);
+  @apply rounded;  
+}
+
+.root > li:hover *,
+.root > li.active * {
+  @apply rounded-md text-white;
+  background: #55185D;
+}
+
+.menuContent {
+  color: var(--font-color-2);
+  @apply font-bold h-8 flex flex-row items-center px-4 outline-none cursor-pointer;
+}
+
+.menuContent > div:first-child {
+  @apply mr-3 w-auto;
+}
+
+.nonTextDecoration {
+  text-decoration: none;
+}
+
+@screen md {
+  .root {
+    @apply block;
+  }
+}

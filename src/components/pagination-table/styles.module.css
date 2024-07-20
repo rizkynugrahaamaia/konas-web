@@ -1,0 +1,100 @@
+.root {
+  @apply w-full;
+}
+
+.root > div.pagination {
+  @apply flex flex-col mt-3;
+}
+
+.root > div.pagination > p {
+  @apply text-sm w-full;
+}
+
+.root > div.pagination > div {
+  @apply flex flex-row justify-center w-full mt-4;
+}
+
+.root > div.pagination > div > button {
+  padding: 1px;
+  margin: auto 1px;
+  min-width: 1.5rem;
+  @apply border border-white flex justify-center items-center h-6 rounded-full;
+}
+
+.root > div.pagination > div > button:disabled {
+  @apply opacity-50;
+}
+
+.root > div.pagination > div > button:hover:enabled {
+  @apply border-orange-500 text-orange-500;
+}
+
+.root > div.pagination > div > button.active {
+  @apply bg-orange-500 text-white opacity-100;
+}
+
+.btnLoadmore {
+  @apply w-full rounded p-2 font-extrabold border border-blue-400;
+}
+
+.btnLoadmore:focus {
+  @apply outline-none ;
+}
+
+.btnperpage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #F5F5F5;
+  color: #404040;
+  border: 0.5px solid #F5F5F5;
+
+  height: 32px;
+  border-radius: 6px;
+  padding: 4px 10px;  
+  margin: 4px;
+
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+
+.btnperpage:hover {
+  color: #F69421;
+  border: 0.5px solid #F69421;
+}
+
+.btnperpageactive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #F69421;
+  color: #ffffff;
+
+  height: 32px;
+  border-radius: 6px;
+  padding: 4px 10px;   
+  margin: 4px;
+
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: -0.5px;
+  text-align: center;
+}
+
+@screen md {
+  .root > div.pagination {
+    @apply flex-row justify-between items-center;
+  }
+
+  .root > div.pagination > p {
+    @apply w-auto;
+  }
+
+  .root > div.pagination > div {
+    @apply w-auto mt-0 justify-end;
+  }
+}
