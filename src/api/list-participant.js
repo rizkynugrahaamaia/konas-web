@@ -1,17 +1,25 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import ENDPOINT from '../constants/endpoint';
 import {  uninterceptedAxiosInstance } from '../configs/axios-config';
+import { BASIC_AUTH_USERNAME, BASIC_AUTH_PASSWORD } from '../constants/auth';
 
 export const getParticipantList = async (params) => {
   return await uninterceptedAxiosInstance.get(ENDPOINT.getListPeserta, { params });
 };
 
 export const getRegionList = async (params) => {
-  return await uninterceptedAxiosInstance.get(ENDPOINT.getRegion, { params });
+  return await uninterceptedAxiosInstance.get(
+    ENDPOINT.getRegion, { 
+    params,
+    auth: { username:  BASIC_AUTH_USERNAME, password: BASIC_AUTH_PASSWORD }
+   });
 };
 
 export const getStatusList = async (params) => {
-  return await uninterceptedAxiosInstance.get(ENDPOINT.getStatusPeserta, { params });
+  return await uninterceptedAxiosInstance.get(ENDPOINT.getStatusPeserta, { 
+    params, 
+    auth: { username:  BASIC_AUTH_USERNAME, password: BASIC_AUTH_PASSWORD }
+  });
 };
 
 export const createPeserta = async (payload) => {
@@ -71,8 +79,6 @@ export const useGetRegion = (params, options) => {
     value: item.regionId
   }))
 
-  finalData?.unshift({ label: 'Semua', value: '' });
-
   return {
     ...result,
     ...result?.data,
@@ -90,7 +96,6 @@ export const useGetStatus = (params, options) => {
     label: item.name,
     value: item.roleId
   }))
-  finalData?.unshift({ label: 'Semua', value: '' });
   return {
     ...result,
     ...result?.data,

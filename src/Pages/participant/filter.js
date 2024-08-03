@@ -70,6 +70,9 @@ export default function Filter({
       { label: 'Hadir', value: 'hadir' },
       { label: 'Belum Hadir', value: 'belum_hadir' }
     ]
+ 
+    wilayahOptions?.unshift({ label: 'Semua', value: '' });
+    statusOptions?.unshift({ label: 'Semua', value: '' });
 
     return(
         <div>

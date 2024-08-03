@@ -23,6 +23,7 @@ export default function Component(){
             ...values,
             region: values?.region?.value,
             status: values?.status?.value,
+            password: values?.username
         }
         editPeserta(payload,
           {
