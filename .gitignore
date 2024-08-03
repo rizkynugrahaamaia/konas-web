@@ -24,3 +24,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+REACT_APP_SERVICE_URL=https://konas-service.vercel.app
+REACT_APP_BASIC_U=konas
+REACT_APP_BASIC_P=da1c25d8-37c8-41b1-afe2-42dd4825bfea
