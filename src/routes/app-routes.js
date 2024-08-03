@@ -1,18 +1,14 @@
 import React from 'react';
 import '../App.css';
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
-import { getLogged } from '../utils/storage'
 import mainMenu from '../pages/main-menu';
 import { Login } from '../pages';
 import privateMenu from '../pages/private-menu';
-import MainLayout from '../layout/main-layout';
-
-export const PrivateRoute = () => {
-  return getLogged() ? <MainLayout/> : <Navigate to="/login" />
-};
+import { PrivateRoute } from './private-routes';
 
 function AppRoutes() {
+
   return (
     <>
       <Routes>
@@ -32,10 +28,6 @@ function AppRoutes() {
         })}
        </Route>
         {/* Akhir Main Menu */}
-
-        {/* <Route element={<PrivateRoute />}>
-          <Route path="/beranda" element={<MainPage />} />
-        </Route> */}
 
         {/* Private Menu */}
         <Route element={<PrivateRoute />}>

@@ -1,7 +1,7 @@
 export const validation = (value, rules) => {
   
   if (rules.required && !value) {
-    return `${rules.label} is required`;
+    return `${rules.label} wajib diisi`;
   }
 
   if (rules.minLength && value.length < rules.minLength) {

@@ -1,7 +1,7 @@
 const KONAS_TOKEN = 'konas_web';
 
 export const getLogged = () => {
-  return localStorage.getItem(KONAS_TOKEN);
+  return JSON.parse(localStorage.getItem(KONAS_TOKEN));
 };
 
 export const setLogged = (value) => {

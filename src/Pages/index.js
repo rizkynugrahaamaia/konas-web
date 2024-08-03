@@ -14,5 +14,6 @@ export const Participant = Suspensed(lazy(() => import('./participant' /* webpac
 export const ParticipantAdd =  Suspensed(lazy(() => import('./participant/add')));
 export const ParticipantEdit =  Suspensed(lazy(() => import('./participant/edit')));
 export const ParticipantDetails =  Suspensed(lazy(() => import('./participant/detail')));
-export const Vote = Suspensed(lazy(() => import('./vote' /* webpackChunkName: "Vote"*/)));
+export const Scan = Suspensed(lazy(() => import('./scan' /* webpackChunkName: "Vote"*/)));
 export const AccessDetails =  Suspensed(lazy(() => import('./access-details')));
+export const Vote = Suspensed(lazy(() => import('./vote' /* webpackChunkName: "Vote"*/)));

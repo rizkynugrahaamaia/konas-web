@@ -4,14 +4,16 @@ import {
   ParticipantEdit,
   ParticipantDetails
 } from './index';
+import { getLogged } from '../utils/storage'
 
-let privateMenu = [
+let pvMenu = [
   {
     label: 'Participant Add',
     element: <ParticipantAdd />,
     key: '/participant-add',
     path: '/participant-add',
     exact: true,
+    allowedRoles: ['Super Admin', 'Admin', 'Sekertaris']
   },
   {
     label: 'Participant Edit',
@@ -19,6 +21,7 @@ let privateMenu = [
     key: '/participant-edit/:id',
     path: '/participant-edit/:id',
     exact: true,
+    allowedRoles: ['Super Admin', 'Admin', 'Sekertaris']
   },
   {
     label: 'Participant Detail',
@@ -26,6 +29,7 @@ let privateMenu = [
     key: '/participant-details',
     path: '/participant-details/:id',
     exact: true,
+    allowedRoles: ['Super Admin', 'Admin', 'Sekertaris', 'Formal', 'Non Formal']
   },
   {
     label: 'Access Detail',
@@ -33,7 +37,18 @@ let privateMenu = [
     key: '/access-details',
     path: '/access-details/:id',
     exact: true,
+    allowedRoles: ['Super Admin', 'Admin']
   }
 ]
+
+const isLogged = getLogged();
+
+let privateMenu = [];
+
+if (typeof isLogged !== 'undefined' && isLogged !== null) {
+  privateMenu = pvMenu.filter(route => 
+    !route.allowedRoles || route.allowedRoles.includes( isLogged['role'])
+  );
+}
 
 export default privateMenu;

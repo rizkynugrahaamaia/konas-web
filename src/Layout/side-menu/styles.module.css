@@ -29,7 +29,7 @@
 
 .menuContent {
   color: var(--font-color-2);
-  @apply font-bold h-8 flex flex-row items-center px-4 outline-none cursor-pointer;
+  @apply font-bold h-8 flex flex-row items-center px-4 outline-none cursor-pointer py-6;
 }
 
 .menuContent > div:first-child {

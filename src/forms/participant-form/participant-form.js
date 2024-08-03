@@ -8,16 +8,45 @@ import InputDatepicker from '../../components/hook-form/datepicker'
 import InputSelect from "../../components/hook-form/select/select";
 import Textarea from '../../components/hook-form/textarea'
 
-export default function ParticipantForm(props){
+export default function ParticipantForm({
+    onSubmit = () => {},
+    defaultValues = {},
+    isDetail = false,
+    isEdit = false,
+    isLoading = false,
+    statusLoading = false,
+    statusOptions = [],
+    wilayahLoading = false,
+    wilayahOptions = []
+}){
 
-    const { onSubmit } = props;
-    const { register, control, handleSubmit, formState: { errors } } = useForm();
+    const { register, control, handleSubmit, setValue, formState: { errors, isValid } } = useForm({
+        mode: 'onChange',
+        progressive: true,
+        defaultValues: {
+          fullname: '',
+          username: '',
+          birthday: '',
+          status: '',
+          region: '',
+          roomMeet: '',
+          flight: '',
+          roomStay: '',
+          ...defaultValues
+        }
+    });
+
+    const handleInputChange = (event) => {
+        const value = event.target.value.toLowerCase().replace(/[^a-z0-9]/g, '');
+        setValue(event.target.name, value, { shouldValidate: true });
+    };
 
     return(
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <Textfield
-            id="name"
+            disabled={isDetail}
+            id="fullname"
             className="mb-6"
             label="Nama"
             mandatory
@@ -27,18 +56,19 @@ export default function ParticipantForm(props){
             rules={{ 
                 label: 'Nama',
                 required: true, 
-                minLength: 3 
             }}
             validation={validation}
         />
 
         <Textfield
+            disabled={isEdit || isDetail}
             id="username"
             className="mb-6"
             label="Username"
             mandatory
             register={register}
             errors={errors}
+            onChange={handleInputChange}
             placeholder="Masukkan Username"
             rules={{ 
                 label: 'Username',
@@ -48,7 +78,8 @@ export default function ParticipantForm(props){
         />
 
         <InputDatepicker
-            id="birthDate"
+            disabled={isDetail}
+            id="birthday"
             className="mb-6"
             control={control}
             label="Tanggal Lahir"
@@ -63,16 +94,15 @@ export default function ParticipantForm(props){
         />
 
         <InputSelect
-            id="peserta"
+            isDisabled={isDetail}
+            id="status"
             className="mb-6"
             control={control}
+            isLoading={statusLoading}
             label="Status Peserta"
             errors={errors}
             mandatory
-            options={[
-                { value: 'formal', label: 'Formal' },
-                { value: 'non_formal', label: 'Non Formal' }
-            ]}
+            options={statusOptions}
             placeholder="Pilih Peserta"
             rules={{ 
                 label: 'Status Peserta',
@@ -82,16 +112,15 @@ export default function ParticipantForm(props){
         />
 
         <InputSelect
-            id="wilayah"
+            isDisabled={isDetail}
+            id="region"
             className="mb-6"
             control={control}
+            isLoading={wilayahLoading}
             label="Wilayah"
             errors={errors}
             mandatory
-            options={[
-                { value: 'wilayah1', label: 'Wilayah I' },
-                { value: 'wilayah2', label: 'Wilayah II' }
-            ]}
+            options={wilayahOptions}
             placeholder="Pilih Wilayah"
             rules={{ 
                 label: 'Wilayah',
@@ -101,46 +130,73 @@ export default function ParticipantForm(props){
         />
 
         <Textarea
-            id="meeting_room"
+            disabled={isDetail}
+            id="roomMeet"
             className="mb-6"
             label="Ruang Meeting"
             register={register}
             errors={errors}
+            mandatory
             placeholder="Masukkan Ruang Meeting"
+            rules={{ 
+                label: 'Ruang Meeting',
+                required: true, 
+            }}
             rows={5}
+            validation={validation}
         />
 
         <Textarea
-            id="flight_info"
+            disabled={isDetail}
+            id="flight"
             className="mb-6"
             label="Informasi Penerbangan"
             register={register}
             errors={errors}
+            mandatory
             placeholder="Masukkan Informasi Penerbangan"
+            rules={{ 
+                label: 'Informasi Penerbangan',
+                required: true, 
+            }}
             rows={5}
+            validation={validation}
         />
 
         <Textarea
-            id="guest_room"
+            disabled={isDetail}
+            id="roomStay"
             className="mb-6"
             label="Ruang Inap"
             register={register}
             errors={errors}
+            mandatory
             placeholder="Masukkan Ruang Inap"
+            rules={{ 
+                label: 'Ruang Inap',
+                required: true, 
+            }}
             rows={5}
+            validation={validation}
         />
-
-        <button 
-            className="bg-[#55185D] p-2 w-28 rounded-md text-white float-right"
+         
+        {!isDetail ? ( <button 
+            className="bg-[#55185D] p-2 w-28 rounded-md text-white float-right disabled:bg-gray-400 disabled:cursor-not-allowed"
+            disabled={!isValid || isLoading}
             type="submit"
         >
             Submit
-        </button>
+        </button>) : null }
+   
         
       </form>
     )
 }
 
 ParticipantForm.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+    defaultValues: PropTypes.object,
+    isDetail: PropTypes.bool,
+    isEdit: PropTypes.bool,
+    isLoading: PropTypes.bool,
+    onSubmit: PropTypes.func
 }

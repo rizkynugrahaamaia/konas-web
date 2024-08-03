@@ -7,7 +7,6 @@ export const getCookies = () => {
 };
 
 export const setCookies = (value) => {
-  console.log('ceki value', value)
     Cookies.set(KONAS_TOKEN, value, {});
 };
 

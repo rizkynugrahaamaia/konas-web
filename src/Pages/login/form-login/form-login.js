@@ -16,9 +16,16 @@ export default function Component(){
         e.preventDefault();
         loginMutation.mutate({ username, password}, 
           {
-            onSuccess: () => {
-                  setLogged({ isLogged: true })
-                  window.location.href = '/';
+            onSuccess: (res) => {
+                  setLogged({ 
+                    isLogged: true,
+                    ...res.data
+                })
+                  if(res.data.role === 'Formal' || res.data.role === 'Non Formal'){
+                    window.location.href = '/participant-details';
+                  }else{
+                    window.location.href = '/';
+                  }
             },
             onError: (err) => {
                 setMessageError('Username atau Password salah!')

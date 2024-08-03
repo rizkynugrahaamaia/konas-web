@@ -12,11 +12,9 @@ export default function SideMenu() {
 
   const menuItem = (m) => (
     <div className={styles.menuContent}>
-      {/* <div>
-        <img alt="icon" src={m.icon} />
-      </div> */}
-      <div>
-        <span className="text-white">{m.label}</span>
+      <div className="flex">
+        <img alt="icon_menu" src={m.icon} />
+        <span className="text-white ml-2">{m.label}</span>
       </div>
     </div>
   );

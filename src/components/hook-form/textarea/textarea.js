@@ -3,16 +3,15 @@ import PropTypes from 'prop-types';
 
 
 export default function Textarea({
-
-  className,
-  inputClass,
-  mandatory,
-  id,
-  label,
-  register,
-  errors,
-  validation,
-  rules,
+  className = '',
+  id = '',
+  inputClass = '',
+  label = '',
+  errors = {},
+  register = () => {},
+  mandatory = false,
+  rules = {},
+  validation = () => {},
   ...rest
 
 }) {
@@ -45,17 +44,6 @@ export default function Textarea({
   );
 }
 
-Textarea.defaultProps = {
-  className: '',
-  id: '',
-  inputClass: '',
-  label: '',
-  errors: {},
-  register: () => {},
-  mandatory: false,
-  validation: () => {},
-};
-
 Textarea.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
@@ -68,6 +56,6 @@ Textarea.propTypes = {
     required: PropTypes.bool,
     minLength: PropTypes.number,
     label: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   validation: PropTypes.func,
 };
