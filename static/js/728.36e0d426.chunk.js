@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkkonas_front_end=self.webpackChunkkonas_front_end||[]).push([[728],{9728:(e,s,n)=>{n.r(s),n.d(s,{default:()=>d});n(2791);var t=n(184);function d(){return(0,t.jsx)("div",{className:"p-4 flex justify-center items-center fixed left-0 top-0 right-0 bottom-0",children:(0,t.jsx)("div",{className:"bg-white p-8 rounded-md shadow-md",children:(0,t.jsx)("h1",{className:"text-4xl",children:"Anda mempunyai Akses ke Meeting Room"})})})}}}]);
+//# sourceMappingURL=728.36e0d426.chunk.js.map
