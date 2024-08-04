@@ -1,11 +1,11 @@
-import AppLayout from './layout/app-layout/app-layout'
+import LayoutApp from './layout/layoutapp'
 import AppRoutes from "./routes/app-routes";
 
 function App() {
   return (
-    <AppLayout>
+    <LayoutApp>
       <AppRoutes />
-    </AppLayout>
+    </LayoutApp>
   );
 }
 
