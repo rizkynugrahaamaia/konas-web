@@ -53,7 +53,7 @@ export default function Component({
         <div className={styles['qr_wrap']}>       
             <QrReader
                 constraints={{
-                  audio: true,
+                  audio: false,
                   video: { facingMode: "environment" }
                 }}
                 delay={100}
