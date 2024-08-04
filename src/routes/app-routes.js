@@ -2,9 +2,9 @@ import React from 'react';
 import '../App.css';
 import { Routes, Route } from "react-router-dom";
 
-import mainMenu from '../pages/main-menu';
-import { Login } from '../pages';
-import privateMenu from '../pages/private-menu';
+import mainMenu from '../allpages/main-menu';
+import { Login } from '../allpages';
+import privateMenu from '../allpages/private-menu';
 import { PrivateRoute } from './private-routes';
 
 function AppRoutes() {

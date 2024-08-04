@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import mainMenu from '../../pages/main-menu';
+import mainMenu from '../../allpages/main-menu';
 
 import styles from './styles.module.css';
 

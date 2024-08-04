@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { getLogged } from '../../utils/storage'
 import { useLogout } from '../../api/auth';
-import mainMenu from '../../pages/main-menu';
+import mainMenu from '../../allpages/main-menu';
 import icons from '../../configs/icons';
 
 import styles from './styles.module.css'
