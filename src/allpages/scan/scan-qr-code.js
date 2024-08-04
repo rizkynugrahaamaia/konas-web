@@ -53,6 +53,7 @@ export default function Component({
         <div className={styles['qr_wrap']}>       
             <QrReader
                 delay={100}
+                facingMode="environment"
                 style={{
                     height: 240,
                     width: 320,
