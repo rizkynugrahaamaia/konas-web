@@ -54,12 +54,16 @@ export default function Component({
             <QrReader
                 constraints={{
                   audio: false,
-                  video: { facingMode: "environment" }
+                  video: { 
+                    facingMode: "environment",
+                    height: { ideal: 720 },
+                    width: { ideal: 1280 }
+                  }
                 }}
                 delay={100}
                 style={{
-                    height: 240,
-                    width: 320,
+                    height: 340,
+                    width: 420,
                 }}
                 onError={() => {}}
                 onScan={(e)=> { qrVisible?.type === 'profile' ? handleScanProfile(e) : handleScanKehadiran(e) }}
