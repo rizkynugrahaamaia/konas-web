@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useDeletePeserta, useGetParticipantList } from  '../../api/list-participant';
 import Modal from '../../components/sweetalert';
-import Table from '../../components/table';
+import Table from '../../components/mytable';
 import Filter from './filter';
 import icons from '../../configs/icons';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Table from '../../components/table';
+import Table from '../../components/mytable';
 
 const PrintView = React.forwardRef(function PrintView (
   { 
