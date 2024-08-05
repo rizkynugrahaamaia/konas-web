@@ -8,7 +8,7 @@ export const service = process.env.REACT_APP_SERVICE_URL;
 // Membuat instance Axios dengan konfigurasi
 const interceptedAxiosInstance = axios.create({
   baseURL: service,
-  withCredentials: true,  // Mengizinkan pengiriman cookie dalam permintaan
+credentials: 'include',  // Mengizinkan pengiriman cookie dalam permintaan
 });
 
 interceptedAxiosInstance.CancelToken = axios.CancelToken;
@@ -50,7 +50,7 @@ interceptedAxiosInstance.interceptors.response.use(
 // Membuat instance Axios kedua tanpa interseptor permintaan
 const uninterceptedAxiosInstance = axios.create({
   baseURL: service,
-  withCredentials: true,  // Mengizinkan pengiriman cookie dalam permintaan
+ credentials: 'include',  // Mengizinkan pengiriman cookie dalam permintaan
 });
 
 // Interseptor respons untuk instance kedua
