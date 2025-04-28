@@ -1,4 +1,4 @@
-import { Participant, ParticipantDetails, Scan, Vote } from './index';
+import { Participant, ParticipantDetails, Scan, Vote, Candidates } from './index';
 import { getLogged } from '../utils/storage'
 import icons from '../configs/icons'
 
@@ -38,7 +38,16 @@ let menus= [
     index: true,
     exact: true,
     icon: icons.menu_vote,
-    allowedRoles: ['Super Admin', 'Formal']
+    allowedRoles: ['Super Admin']
+  },
+  {
+    label: 'Vote',
+    element: <Candidates />,
+    path: '/candidates',
+    index: true,
+    exact: true,
+    icon: icons.menu_vote,
+    allowedRoles: ['Formal']
   }
 ]
 

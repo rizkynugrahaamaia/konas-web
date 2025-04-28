@@ -10,6 +10,13 @@ const endpoint = {
     updateUser: '/api/users/v1/edit',
     deleteUser: (id) => `/api/users/v1/delete/${id}`,
     updateKehadiran: (id) => `/api/users/v1/presence/${id}`,
+     
+    //vote & candidates
+    getCandidates: '/api/candidate/v1/list',
+    candidateApi: '/api/candidate/v1/candidate',
+    getVote: '/api/vote/v1/list',
+    getVoteByUser: '/api/vote/v1/user',
+    createVote: (id) => `/api/vote/v1/vote/${id}`
 }
 
 export default endpoint;
