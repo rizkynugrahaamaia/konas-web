@@ -9,6 +9,7 @@ export const service = process.env.REACT_APP_SERVICE_URL;
 const interceptedAxiosInstance = axios.create({
   baseURL: service,
   withCredentials: true,  // Mengizinkan pengiriman cookie dalam permintaan
+  credentials: 'include'
 });
 
 interceptedAxiosInstance.CancelToken = axios.CancelToken;
