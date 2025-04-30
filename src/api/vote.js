@@ -1,33 +1,33 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { uninterceptedAxiosInstance } from "../configs/axios-config";
+import { interceptedAxiosInstance } from "../configs/axios-config";
 import ENDPOINT from "../constants/endpoint";
 
 export const getCandidatesList = async (params) => {
-  return await uninterceptedAxiosInstance.get(ENDPOINT.getCandidates, { params });      
+  return await interceptedAxiosInstance.get(ENDPOINT.getCandidates, { params });      
 }
 
 export const createCandidate = async (payload) => {
-  return await uninterceptedAxiosInstance.post(ENDPOINT.candidateApi, payload, {});
+  return await interceptedAxiosInstance.post(ENDPOINT.candidateApi, payload, {});
 };
 
 export const deleteCandidate = async () => {
-return await uninterceptedAxiosInstance.delete(ENDPOINT.candidateApi);
+return await interceptedAxiosInstance.delete(ENDPOINT.candidateApi);
 };
 
 export const getVoteList = async (params) => {
-    return await uninterceptedAxiosInstance.get(ENDPOINT.getVote, { params });      
+    return await interceptedAxiosInstance.get(ENDPOINT.getVote, { params });      
 }
 
 export const getVoteByUser = async (params) => {
-  return await uninterceptedAxiosInstance.get(ENDPOINT.getVoteByUser, { params });      
+  return await interceptedAxiosInstance.get(ENDPOINT.getVoteByUser, { params });      
 }
 
 export const createVote = async (id) => {
-  return await uninterceptedAxiosInstance.post(ENDPOINT.createVote(id));
+  return await interceptedAxiosInstance.post(ENDPOINT.createVote(id));
 };
 
 export const deleteVote = async () => {
-  return await uninterceptedAxiosInstance.delete(ENDPOINT.getVote);
+  return await interceptedAxiosInstance.delete(ENDPOINT.getVote);
 };
 
 export const useGetCandidate = (params, options) => {

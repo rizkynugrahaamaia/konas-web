@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import ENDPOINT from '../constants/endpoint';
-import {  uninterceptedAxiosInstance } from '../configs/axios-config';
+import {  uninterceptedAxiosInstance, interceptedAxiosInstance } from '../configs/axios-config';
 import { BASIC_AUTH_USERNAME, BASIC_AUTH_PASSWORD } from '../constants/auth';
 
 export const getParticipantList = async (params) => {
-  return await uninterceptedAxiosInstance.get(ENDPOINT.getListPeserta, { params });
+  return await interceptedAxiosInstance.get(ENDPOINT.getListPeserta, { params });
 };
 
 export const getRegionList = async (params) => {
@@ -23,23 +23,23 @@ export const getStatusList = async (params) => {
 };
 
 export const createPeserta = async (payload) => {
-  return await uninterceptedAxiosInstance.post(ENDPOINT.createUser, payload, {});
+  return await interceptedAxiosInstance.post(ENDPOINT.createUser, payload, {});
 };
 
 export const updatePeserta = async (payload) => {
-  return await uninterceptedAxiosInstance.put(ENDPOINT.updateUser, payload, {});
+  return await interceptedAxiosInstance.put(ENDPOINT.updateUser, payload, {});
 };
 
 export const deletePeserta = async (id) => {
-  return await uninterceptedAxiosInstance.delete(ENDPOINT.deleteUser(id));
+  return await interceptedAxiosInstance.delete(ENDPOINT.deleteUser(id));
 };
 
 export const getDetailUserById = async (id, params) => {
-  return await uninterceptedAxiosInstance.get(ENDPOINT.getDetailUser(id), { params });
+  return await interceptedAxiosInstance.get(ENDPOINT.getDetailUser(id), { params });
 };
 
 export const getUserLogin = async (params) => {
-  return await uninterceptedAxiosInstance.get(ENDPOINT.getByuserLogin, { params });
+  return await interceptedAxiosInstance.get(ENDPOINT.getByuserLogin, { params });
 };
 
 

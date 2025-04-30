@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import ENDPOINT from '../constants/endpoint';
-import {  uninterceptedAxiosInstance } from '../configs/axios-config';
+import {  interceptedAxiosInstance } from '../configs/axios-config';
 
 export const scanKehadiran = async (id) => {
-    return await uninterceptedAxiosInstance.post(ENDPOINT.updateKehadiran(id));
+    return await interceptedAxiosInstance.post(ENDPOINT.updateKehadiran(id));
   };
   
 export const useScanKehadiran = () => {

@@ -1,27 +1,34 @@
 import axios from 'axios';
-import { clearStorage } from '../utils/storage';
+import { clearStorage, getLogged } from '../utils/storage';
 
-// URL dasar dari backend service
-// const service = 'https://konas-service.vercel.app';
 export const service = process.env.REACT_APP_SERVICE_URL;
 
-// Membuat instance Axios dengan konfigurasi
+// Membuat instance Axios dengan konfigurasi tertentu
+// Ini digunakan untuk mengatur URL dasar dan header yang akan digunakan dalam setiap permintaan
 const interceptedAxiosInstance = axios.create({
   baseURL: service,
-  withCredentials: true,  // Mengizinkan pengiriman cookie dalam permintaan
-  credentials: 'include'
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+} //
 });
 
-interceptedAxiosInstance.CancelToken = axios.CancelToken;
-interceptedAxiosInstance.isCancel = axios.isCancel;
+interceptedAxiosInstance.CancelToken = axios.CancelToken; // Menambahkan CancelToken ke instance Axios
+interceptedAxiosInstance.isCancel = axios.isCancel; // Menambahkan isCancel ke instance Axios
 
 // Interseptor permintaan
+// Ini digunakan untuk menambahkan token otentikasi ke setiap permintaan
 interceptedAxiosInstance.interceptors.request.use(function (config) {
-  // Kamu bisa menambahkan logika tambahan di sini sebelum permintaan dikirim
+  // Mengambil token dari localStorage
+  const { token } = getLogged();
+  if (token) {
+    // Menambahkan token ke header Authorization jika ada
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
-// Interseptor respons
+// Ini digunakan untuk menangani respons dari server
 interceptedAxiosInstance.interceptors.response.use(
   function (response) {
     return response.data;
@@ -49,12 +56,17 @@ interceptedAxiosInstance.interceptors.response.use(
 
 
 // Membuat instance Axios kedua tanpa interseptor permintaan
+// Ini digunakan untuk permintaan yang tidak memerlukan token otentikasi
 const uninterceptedAxiosInstance = axios.create({
   baseURL: service,
-  withCredentials: true,  // Mengizinkan pengiriman cookie dalam permintaan
+  headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+  }
 });
 
 // Interseptor respons untuk instance kedua
+// Ini digunakan untuk menangani respons dari server
 uninterceptedAxiosInstance.interceptors.response.use(
   function (response) {
     return response.data;

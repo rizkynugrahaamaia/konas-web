@@ -18,6 +18,7 @@ export default function Component(){
           {
             onSuccess: (res) => {
                   setLogged({ 
+                    token: res.token,
                     isLogged: true,
                     ...res.data
                 })
@@ -28,7 +29,7 @@ export default function Component(){
                   }
             },
             onError: (err) => {
-                setMessageError('Username atau Password salah!')
+                setMessageError(err.message || 'Website error, please contact developer')
             }
         })
     }
