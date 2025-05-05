@@ -74,10 +74,10 @@ export const useGetVoteList = (params, options) => {
 
 export const useGetVoteByUser = (params, options) => {
   const result = useQuery({
-      queryKey: ['get-vote-by-user', params],
-      queryFn: () => getVoteByUser(params),
-      ...options
-  });
+    queryKey: ['get-vote-by-user', params],
+    queryFn: () => getVoteByUser(params),
+    ...options
+});
   return result;
 }
 

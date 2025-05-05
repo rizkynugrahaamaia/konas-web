@@ -14,7 +14,10 @@ export default function Component(){
     const navigate = useNavigate();
     const { id } = useParams();
     const user = getLogged();
-
+  
+    // berfungsi untuk mengecek apakah user adalah admin atau bukan
+    // jika bukan admin, maka id peserta diambil dari url
+    // jika admin, maka id peserta diambil dari data login
     const cekRole = user.role !== 'Formal' && user.role !== 'Non Formal';
 
     const { data: loginData, isLoading: userLoading } = useLoginUser({}, { enabled: !cekRole })
@@ -62,7 +65,7 @@ export default function Component(){
         <>
         <h1 className='text-2xl font-semibold mb-4'>Detail Peserta</h1>
           <div className='border-2 p-4 m-auto mb-6' style={{ width: '220px' }}>
-            <QRCodeSVG size={180} value={`/participant-details/${id}`} />
+            <QRCodeSVG size={180} value={`/participant-details/${userData?.userId}`} />
           </div>
            <Form
               defaultValues={{

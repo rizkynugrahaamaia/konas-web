@@ -3,6 +3,11 @@ import { clearStorage, getLogged } from '../utils/storage';
 
 export const service = process.env.REACT_APP_SERVICE_URL;
 
+const redirectToLogin = () => {
+  clearStorage();
+  window.location.replace('/login'); // Menggunakan replace untuk menghindari history
+};
+
 // Membuat instance Axios dengan konfigurasi tertentu
 // Ini digunakan untuk mengatur URL dasar dan header yang akan digunakan dalam setiap permintaan
 const interceptedAxiosInstance = axios.create({
@@ -18,15 +23,21 @@ interceptedAxiosInstance.isCancel = axios.isCancel; // Menambahkan isCancel ke i
 
 // Interseptor permintaan
 // Ini digunakan untuk menambahkan token otentikasi ke setiap permintaan
-interceptedAxiosInstance.interceptors.request.use(function (config) {
-  // Mengambil token dari localStorage
-  const { token } = getLogged();
-  if (token) {
-    // Menambahkan token ke header Authorization jika ada
-    config.headers.Authorization = `Bearer ${token}`;
+interceptedAxiosInstance.interceptors.request.use(
+  function (config) {
+    const logged = getLogged();
+    // Cek apakah token ada dan valid
+    if (!logged || !logged.token) {
+      redirectToLogin();
+      return Promise.reject('Authentication failed');
+    }
+    config.headers.Authorization = `Bearer ${logged.token}`;
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
   }
-  return config;
-});
+);
 
 // Ini digunakan untuk menangani respons dari server
 interceptedAxiosInstance.interceptors.response.use(
@@ -38,19 +49,19 @@ interceptedAxiosInstance.interceptors.response.use(
       return Promise.reject('request canceled');
     }
 
-    if (err.response && err.response.data) {
+    if (err.response) {
+      // Handle unauthorized atau token invalid
       if (err.response.status === 401 || err.response.status === 403) {
-        clearStorage();
-        window.location.href = '/login';
+        redirectToLogin();
+        return Promise.reject('Session expired');
       }
       return Promise.reject(err.response.data);
-    } else {
-      return Promise.reject({
-        code: 500,
-        status: 'error',
-        message: 'Failed to fetch data. Please contact developer.',
-      });
     }
+    return Promise.reject({
+      code: 500,
+      status: 'error',
+      message: 'Failed to fetch data. Please contact developer.',
+    });
   }
 );
 
@@ -64,7 +75,7 @@ const uninterceptedAxiosInstance = axios.create({
       'Content-Type': 'application/json',
   }
 });
-
+ 
 // Interseptor respons untuk instance kedua
 // Ini digunakan untuk menangani respons dari server
 uninterceptedAxiosInstance.interceptors.response.use(
@@ -75,12 +86,7 @@ uninterceptedAxiosInstance.interceptors.response.use(
     if (axios.isCancel(err)) {
       return Promise.reject('request canceled');
     }
-
     if (err.response && err.response.data) {
-      if (err.response.status === 401 || err.response.status === 403) {
-        clearStorage();
-        window.location.href = '/login';
-      }
       return Promise.reject(err.response.data);
     } else {
       return Promise.reject({

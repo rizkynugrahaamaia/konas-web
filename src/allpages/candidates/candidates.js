@@ -23,6 +23,10 @@ export default function Vote() {
     refetch: refetchCand 
   } = useGetCandidate({}, { enabled: true,  initialData: [] });
 
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   let view = null;
 
   if(isFetchingVote || isLoadingVote || isFetchingCand || isLoadingCand) { return '...isLoading' }
@@ -63,7 +67,7 @@ export default function Vote() {
       
       <div className="flex justify-center mt-4 sm:mt-6">
         <button
-          onClick={() => { refetchVote(); refetchCand() }}
+          onClick={() => handleRefresh()}
           className="px-4 sm:px-6 py-1 sm:py-2 bg-[#290849] text-white text-sm sm:text-base rounded-md hover:bg-[#290849] shadow-sm"
         >
           Muat Ulang

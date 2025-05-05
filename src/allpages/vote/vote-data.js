@@ -9,8 +9,7 @@ const VoteData = ({
     labels = [],
     chartData = [],
     backgroundColor = [],
-    getShortName = () => {},
-    setIsModalOpen = () => {},
+    getShortName = () => {}
 }) => { 
 
     const queryClient = useQueryClient();
@@ -32,6 +31,7 @@ const VoteData = ({
               callback(null,
                   {
                     onSuccess: () => {
+                      queryClient.invalidateQueries({ queryKey: ['get-vote-by-user'] });
                       queryClient.invalidateQueries({ queryKey: ['get-vote-list'] });
                         Modal({
                             title: 'Berhasil!',
